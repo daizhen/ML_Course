@@ -17,6 +17,13 @@ p = zeros(size(X, 1), 1);
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
 
+% matrix prod result in m*k matrix, where m-> the record count and k class count.
+tem_matrix  = X*all_theta';
+[tem_result,max_index]=max(tem_matrix,[],2);
+
+p = max_index;
+
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
 %               your learned logistic regression parameters (one-vs-all).

@@ -17,6 +17,20 @@ all_theta = zeros(num_labels, n + 1);
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
 
+
+
+
+%  Set options for fminunc
+options = optimset('GradObj', 'on', 'MaxIter', 50);
+
+%  Run fminunc to obtain the optimal theta
+%  This function will return theta and the cost 
+for  i = 1:num_labels
+  initial_theta = zeros(n + 1, 1);
+  [result_theta] = fmincg(@(t)(lrCostFunction(t, X, (y==i),lambda)), initial_theta, options);
+  all_theta(i,:) = result_theta';
+ end;
+ 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the following code to train num_labels
 %               logistic regression classifiers with regularization
