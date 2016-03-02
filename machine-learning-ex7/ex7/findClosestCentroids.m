@@ -21,10 +21,18 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
+for i=1:size(X,1)
+    minValue = -1;
+    for j=1:size(centroids,1)
+        
+        % Calculate the dist value
+        dist = sum((X(i,:) - centroids(j,:)).^2);
+        if (dist < minValue) | (minValue < 0)
+            minValue = dist;
+            idx(i) = j;
+        endif;
+    endfor;
+endfor;
 
 
 % =============================================================
