@@ -46,7 +46,6 @@ error_val = zeros(length(lambda_vec), 1);
 		[j,g] = linearRegCostFunction(X,y,theta,lambda);
 		[j1,g1] = linearRegCostFunction(Xval,yval,theta,lambda);
 		error_train(i) = j;
-		disp(j);
 		error_val(i) = j1;
 		
 	endfor;
