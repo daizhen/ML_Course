@@ -135,12 +135,12 @@ my_ratings(98) = 2;
 
 % We have selected a few movies we liked / did not like and the ratings we
 % gave are as follows:
-my_ratings(7) = 3;
-my_ratings(12)= 5;
-my_ratings(54) = 4;
-my_ratings(64)= 5;
-my_ratings(66)= 3;
-my_ratings(69) = 5;
+my_ratings(7) = 5;
+my_ratings(12)= 6;
+my_ratings(54) = 2;
+my_ratings(64)= 1;
+my_ratings(66)= 0;
+my_ratings(69) = 4;
 my_ratings(183) = 4;
 my_ratings(226) = 5;
 my_ratings(355)= 5;

@@ -17,6 +17,35 @@ J = 0;
 X_grad = zeros(size(X));
 Theta_grad = zeros(size(Theta));
 
+
+J = 1/2*sum(sum((Y.*R - (X*Theta').*R).^2)) + lambda/2*(sum(sum(X.^2))) +lambda/2*(sum(sum(Theta.^2)));
+%X_grad = (Y.*R - (X*Theta').*R)*Theta + lambda*X;
+%Theta_grad = (Y.*R - (X*Theta').*R)'*X + lambda*Theta;
+
+
+for i=1:num_movies
+
+    %Get the users index who rated the movie i. 
+    idx = find(R(i, :)==1);
+    Y_tem = Y(i, idx);
+    X_tem = X(i,:);
+    theta_tem = Theta(idx,:);
+    X_grad(i,:) = (X_tem*theta_tem' - Y_tem)*theta_tem + lambda * X_tem;
+endfor;
+
+
+for i = 1: num_users
+    
+    %Get the movies which are rated by ths ith user.
+    idy = find(R(:,i) == 1);
+    X_tem = X(idy,:);
+    Y_tem = Y(idy,i);
+    theta_tem = Theta(i,:);
+    Theta_grad(i,:) = (X_tem*theta_tem' - Y_tem)'*X_tem + lambda * theta_tem;
+
+endfor;
+
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost function and gradient for collaborative
 %               filtering. Concretely, you should first implement the cost
