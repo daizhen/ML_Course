@@ -92,19 +92,34 @@ J = J + lambda/(2*m) *(sum(sum((Theta1.^2)(:,2:end))) + sum(sum((Theta2.^2)(:,2:
 
 for i=1:m
 
-    
+    a1 = [1,X(i,:)];
 
+    Z2 = a1*Theta1';
+    a2 = sigmoid(Z2);
+
+    a2 = [1,a2];
+    Z3 = a2* Theta2';
+    a3 = sigmoid(Z3);
+    
+    % Compute  delta3
+    tem_y = zeros(1, size(a3,2));
+    tem_y(y(i)) =1;
+    deleta3 = a3 - tem_y;
+    
+    deleta2 = Theta2'*deleta3';
+    deleta2 = deleta2(2:end).*sigmoidGradient(Z2)';
+    %Theta1_grad(:,2:end) = Theta1_grad(:,2:end)+ deleta2*a1(2:end);
+    %Theta2_grad(:,2:end) = Theta2_grad(:,2:end)+ deleta3'*a2(2:end);
+    
+    Theta1_grad = Theta1_grad+ deleta2*a1;
+    Theta2_grad = Theta2_grad+ deleta3'*a2;
+    
+    
 endfor;
 
-
-
-
-
-
-
-
-
-
+Theta1_grad = Theta1_grad / m;
+Theta2_grad = Theta2_grad / m;
+    
 
 
 % -------------------------------------------------------------
