@@ -81,11 +81,20 @@ for i=1: m
 endfor;
 J = J/m;
 
+% Add normalization tem.
+
+J = J + lambda/(2*m) *(sum(sum((Theta1.^2)(:,2:end))) + sum(sum((Theta2.^2)(:,2:end))));
 
 
 
 
+% Caculate the delete
 
+for i=1:m
+
+    
+
+endfor;
 
 
 
